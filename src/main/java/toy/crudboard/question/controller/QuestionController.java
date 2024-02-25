@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import toy.crudboard.answer.entity.AnswerForm;
 import toy.crudboard.question.entity.Question;
 import toy.crudboard.question.entity.QuestionForm;
 import toy.crudboard.question.service.QuestionService;
@@ -30,7 +31,7 @@ public class QuestionController {
     }
 
     @GetMapping("/detail/{id}")
-    public String detail(Model model, @PathVariable(name = "id") Long id) {
+    public String detail(Model model, @PathVariable(name = "id") Long id, AnswerForm answerForm) {
         Question question = questionService.findById(id);
         model.addAttribute(question);
         return "question_detail";
