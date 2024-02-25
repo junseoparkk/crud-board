@@ -49,6 +49,7 @@ public class QuestionRepositoryTest {
                 questionRepository.findById(1L).orElseThrow(IllegalArgumentException::new));
     }
 
+    @Transactional
     @DisplayName("질문 제목으로 검색 테스트")
     @Test
     void findBySubjectTest() {
@@ -67,6 +68,7 @@ public class QuestionRepositoryTest {
         assertThat(question.getId()).isEqualTo(findQuestion.getId());
     }
 
+    @Transactional
     @DisplayName("질문 제목 및 글 내용으로 검색 테스트")
     @Test
     void findBySubjectAndContentTest() {
