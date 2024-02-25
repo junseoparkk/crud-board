@@ -34,6 +34,7 @@ public class UserController {
                     "passwordInCorrect",
                     "비밀번호가 일치하지 않습니다."
             );
+            return "signup_form";
         }
 
         userService.signup(userSignupForm.getName(), userSignupForm.getEmail(), userSignupForm.getPassword());
