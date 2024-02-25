@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>질문 목록</title>
 </head>
 <body>
-$END$
+    <table>
+        <thead>
+            <tr>
+                <th>제목</th>
+                <th>작성 날짜</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each = "question : ${questions}">
+                <td th:text = "${question.subject}"></td>
+                <td th:text = "${question.createDate}"></td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
