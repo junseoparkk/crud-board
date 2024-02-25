@@ -1,5 +1,6 @@
 package toy.crudboard.question.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -36,5 +37,14 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public List<Question> findAll() {
         return questionRepository.findAll();
+    }
+
+    @Override
+    public void create(String subject, String content) {
+        Question question = new Question();
+        question.setSubject(subject);
+        question.setContent(content);
+        question.setCreateDate(LocalDateTime.now());
+        questionRepository.save(question);
     }
 }

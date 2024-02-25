@@ -8,5 +8,5 @@ public interface QuestionService {
     Question findBySubject(String subject);
     Question findBySubjectAndContent(String subject, String content);
     List<Question> findAll();
-
+    void create(String subject, String content);
 }

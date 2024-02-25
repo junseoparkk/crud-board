@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import toy.crudboard.question.entity.Question;
 import toy.crudboard.question.service.QuestionService;
 
@@ -34,5 +35,14 @@ public class QuestionController {
     @GetMapping("/create")
     public String createQuestion() {
         return "question_form";
+    }
+
+    @PostMapping("/create")
+    public String createQuestion(
+            @RequestParam(value = "subject") String subject,
+            @RequestParam(value = "content") String content
+    ) {
+        questionService.create(subject, content);
+        return "redirect:/question/list";
     }
 }
