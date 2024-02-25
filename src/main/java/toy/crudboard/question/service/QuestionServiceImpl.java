@@ -1,8 +1,10 @@
 package toy.crudboard.question.service;
 
 import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import toy.crudboard.exception.DataNotFoundException;
 import toy.crudboard.question.entity.Question;
 import toy.crudboard.question.repository.QuestionRepository;
 
@@ -13,8 +15,12 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public Question findById(Long id) {
-        return questionRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("no such question"));
+        Optional<Question> question = questionRepository.findById(id);
+        if (question.isPresent()) {
+            return question.get();
+        } else {
+            throw new DataNotFoundException("question not found");
+        }
     }
 
     @Override
