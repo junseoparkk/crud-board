@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import toy.crudboard.answer.service.AnswerService;
 import toy.crudboard.question.entity.Question;
 import toy.crudboard.question.service.QuestionService;
 
@@ -15,6 +16,7 @@ import toy.crudboard.question.service.QuestionService;
 @Controller
 public class AnswerController {
     private final QuestionService questionService;
+    private final AnswerService answerService;
 
     @PostMapping("/create/{id}")
     public String createAnswer(
@@ -23,9 +25,7 @@ public class AnswerController {
             @RequestParam(value = "content") String content
     ) {
         Question question = questionService.findById(id);
-
-        // TODO: 답변 저장 로직
-
+        answerService.create(question, content);
         return String.format("redirect:/question/detail/%s", id);
     }
 }
