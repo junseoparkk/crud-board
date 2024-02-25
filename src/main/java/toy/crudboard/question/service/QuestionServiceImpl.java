@@ -2,12 +2,14 @@ package toy.crudboard.question.service;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import toy.crudboard.question.entity.Question;
 import toy.crudboard.question.repository.QuestionRepository;
 
 @RequiredArgsConstructor
+@Service
 public class QuestionServiceImpl implements QuestionService {
-    private QuestionRepository questionRepository;
+    private final QuestionRepository questionRepository;
 
     @Override
     public Question findById(Long id) {
