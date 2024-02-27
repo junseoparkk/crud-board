@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +15,7 @@ import toy.crudboard.user.entity.User;
 import toy.crudboard.user.entity.UserRole;
 import toy.crudboard.user.repository.UserRepository;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class UserSecurityService implements UserDetailsService {
@@ -34,6 +36,7 @@ public class UserSecurityService implements UserDetailsService {
         } else {
             authorities.add(new SimpleGrantedAuthority(UserRole.USER.getValue()));
         }
+        log.info("name : {}", user.getName());
         return new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(), authorities);
     }
 }
